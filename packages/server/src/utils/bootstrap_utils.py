@@ -1,10 +1,13 @@
 import logging
+import os
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
 from firebase_admin import credentials, initialize_app
 
 from src.clients import initialize_clients_async
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -27,8 +30,15 @@ async def bootstrap_application_async(config: BootstrapConfig = BootstrapConfig(
     )
 
     if config.initialize_firebase:
-        cred = credentials.Certificate(config.firebase_cert_path)
-        initialize_app(cred)
+        try:
+            if os.path.exists(config.firebase_cert_path):
+                cred = credentials.Certificate(config.firebase_cert_path)
+                initialize_app(cred)
+                logger.info("✅ Firebase Admin initialized")
+            else:
+                logger.warning(f"⚠️ Firebase certificate not found: {config.firebase_cert_path}")
+        except Exception as e:
+            logger.warning(f"⚠️ Firebase initialization failed: {e}")
 
     if config.initialize_clients:
         await initialize_clients_async()

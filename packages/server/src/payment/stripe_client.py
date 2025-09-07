@@ -2,7 +2,7 @@ import os
 
 import stripe
 
-from src.payment.payment_constants import SUCCESS_URL, RETURN_URL
+from src.payment.payment_constants import RETURN_URL, SUCCESS_URL
 
 
 class StripeClient:

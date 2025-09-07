@@ -1,0 +1,36 @@
+# Authentication
+POST /auth/github          # GitHub OAuth login
+POST /auth/invite          # Invite team members
+POST /auth/redeem-email    # Redeem email verification
+POST /auth/redeem-invite   # Redeem team invite
+POST /auth/verify-email    # Verify email address
+
+# GitHub Integration
+POST /github/create-issue
+POST /github/create-issue-comment
+POST /github/create-pull-request
+POST /github/import-issues
+POST /github/handle-github-events   # Webhook endpoint
+GET  /github/list-repos
+POST /github/submit-review
+POST /github/update-issue
+
+# Onboarding
+POST /onboarding/github    # GitHub setup
+POST /onboarding/projects  # Project setup
+
+# Payments (Stripe)
+POST /payment/create-checkout-session
+POST /payment/create-portal-session
+POST /payment/handle-stripe-events   # Webhook endpoint
+
+# Slack Integration
+POST /slack/handle-slack-events      # Webhook endpoint
+
+# Support
+POST /support/contact-us
+
+# AI Tasks
+WS   /task/chat             # WebSocket for AI chat
+POST /task/create-subtasks  # Create AI subtasks
+POST /task/schedule-job     # Schedule execution job

@@ -136,6 +136,8 @@ ENV/
 env.bak/
 venv.bak/
 
+async-firebase.json
+
 # Spyder project settings
 .spyderproject
 .spyproject
